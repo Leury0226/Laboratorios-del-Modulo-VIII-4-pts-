@@ -1,0 +1,48 @@
+sudo apt update && sudo apt upgrade -y
+sudo apt install docker.io -y
+
+sudo systemctl enable docker
+sudo systemctl start docker
+
+docker --version
+sudo systemctl status docker
+
+sudo docker pull nginx
+
+sudo docker images
+
+sudo mkdir -p /home/website
+
+sudo nano /home/website/index.html
+
+#contenido del index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Página con Docker</title>
+</head>
+<body>
+    <h1>Leury Reinoso</h1>
+    <p>Matrícula: 2024-XXXX</p>
+</body>
+</html>
+
+
+
+#Crear el contenedor con el puerto redireccionado y volumen montado
+sudo docker run -d \
+  --name mi_nginx \
+  -p 8888:80 \
+  -v /home/website:/usr/share/nginx/html \
+  nginx
+
+sudo docker ps
+
+http://127.0.0.1:8888
+
+
+
+
+
+
+
